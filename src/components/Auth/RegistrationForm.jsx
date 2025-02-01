@@ -1,76 +1,114 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/outline';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // 🚀 Added for navigation
+import {
+  auth,
+  provider,
+  signInWithPopup,
+  sendEmailVerification,
+  createUserWithEmailAndPassword,
+} from "../../firebase";
 
-export default function RegistrationForm({ onSubmit, onGoogleAuth, loading }) {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
+const RegistrationForm = ({ onEmailVerificationSent }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [isEmailSent, setIsEmailSent] = useState(false);
+  const [error, setError] = useState("");
+  
+  const navigate = useNavigate(); // 🚀 Hook to navigate to login page
 
-  const handleSubmit = (e) => {
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      console.log(result.user);
+      navigate("/setup"); // Redirect after successful Google login
+    } catch (error) {
+      console.error(error);
+      setError(error.message);
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    setError("");
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      await sendEmailVerification(userCredential.user);
+      setIsEmailSent(true);
+      onEmailVerificationSent();
+    } catch (error) {
+      console.error(error);
+      setError(error.message);
+    }
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="space-y-6"
-    >
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          placeholder="Full Name"
-          required
-          className="input-field"
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          required
-          className="input-field"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          required
-          className="input-field"
-          value={formData.password}
-          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-        />
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-xl p-6">
+        <h2 className="text-center text-2xl font-bold text-gray-900 mb-4">Create a new account</h2>
+        <p className="text-center text-gray-500 mb-6">It’s quick and easy.</p>
+
+        {error && <p className="text-red-500 text-sm text-center mb-3">{error}</p>}
+        {isEmailSent && <p className="text-green-500 text-sm text-center mb-3">Verification email sent!</p>}
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+          >
+            Register
+          </button>
+        </form>
+
+        <div className="mt-4 text-center">
+          <span className="text-gray-500">or</span>
+        </div>
+
         <button
-          type="submit"
-          disabled={loading}
-          className="primary-btn w-full"
+          onClick={handleGoogleSignIn}
+          className="w-full flex items-center justify-center space-x-2 bg-gray-100 text-gray-700 py-2 rounded-lg border hover:bg-gray-200 transition duration-300 mt-3"
         >
-          {loading ? 'Registering...' : 'Register'}
+          <img src="https://img.icons8.com/color/24/000000/google-logo.png" alt="Google" />
+          <span>Continue with Google</span>
         </button>
-      </form>
 
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-300"></div>
-        </div>
-        <div className="relative flex justify-center text-sm">
-          <span className="px-2 bg-white text-gray-500">Or continue with</span>
-        </div>
+        <p className="text-center text-sm text-gray-600 mt-4">
+          Already have an account?  
+          <button 
+            onClick={() => navigate("/login")} // 🚀 Now functional! 
+            className="text-blue-600 font-medium hover:underline ml-1"
+          >
+            Log in
+          </button>
+        </p>
       </div>
-
-      <button
-        onClick={onGoogleAuth}
-        disabled={loading}
-        className="google-btn w-full"
-      >
-        <ArrowLeftOnRectangleIcon className="h-5 w-5" />
-        Continue with Google
-      </button>
-    </motion.div>
+    </div>
   );
-}
+};
+
+export default RegistrationForm;

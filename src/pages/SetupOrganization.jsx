@@ -10,7 +10,7 @@ export default function SetupOrganization() {
   });
 
   const handleAutoFetch = async () => {
-    // Simulate API call
+
     await new Promise(resolve => setTimeout(resolve, 1000));
     setFormData(prev => ({
       ...prev,
@@ -61,7 +61,7 @@ export default function SetupOrganization() {
       <div className="mt-8 flex justify-end">
         <button
           className="primary-btn"
-          onClick={() => window.location = '/chat-integration'}
+          onClick={() => window.location = '/integration'}
         >
           Continue
         </button>
