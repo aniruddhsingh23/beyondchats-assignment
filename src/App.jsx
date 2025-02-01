@@ -8,7 +8,7 @@ import Success from './pages/Success'
 import Chatbot from './components/ChatIntegration/Chatbot'
 import ContactUs from './pages/ContactUs'
 
-const steps = ['Registration', 'Organization Setup', 'Integration']
+const steps = ['Welcome to BeyondChats']
 
 export default function App() {
   return (

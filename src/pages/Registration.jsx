@@ -11,7 +11,7 @@ const Registration = () => {
 
   return (
     <div className="registration-page">
-      <h1 className="title">Welcome to BeyondChats</h1>
+      
       {emailVerificationSent ? (
         <EmailVerification />
       ) : (
