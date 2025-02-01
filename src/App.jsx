@@ -1,20 +1,20 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
-import ResponsiveLayout from './components/Shared/ResponsiveLayout'
-import ProgressStepper from './components/Shared/ProgressStepper'
+import ResponsiveLayout from './components/Layout/ResponsiveLayout'
 import Registration from './pages/Registration'
 import SetupOrganization from './pages/SetupOrganization'
 import Success from './pages/Success'
 import Chatbot from './components/ChatIntegration/Chatbot'
 import ContactUs from './pages/ContactUs'
+import Header from './components/Layout/Header'
+import Footer from './components/Layout/Footer'
 
-const steps = ['Welcome to BeyondChats']
 
 export default function App() {
   return (
     <BrowserRouter>
       <ResponsiveLayout>
-        <ProgressStepper steps={steps} />
+      <Header />
         <AnimatePresence mode="wait">
           <Routes>
             <Route path="/" element={<Registration />} />
@@ -24,6 +24,7 @@ export default function App() {
             <Route path="/contact" element={<ContactUs />} />
           </Routes>
         </AnimatePresence>
+      <Footer />
       </ResponsiveLayout>
     </BrowserRouter>
   )
