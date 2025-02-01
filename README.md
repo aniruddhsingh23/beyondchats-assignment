@@ -10,7 +10,7 @@ BeyondChats is a React.js-based chatbot setup platform designed to provide a sea
 - Email verification flow to ensure secure access.
 - Google Sign-in support for a faster authentication experience.
 
-### 🤖 AI Chatbot Integration
+### 🤖 Chatbot Integration
 
 - Test chatbot functionality using Dummy data.
 - Integration options for embedding the chatbot into external websites.
@@ -37,7 +37,7 @@ BeyondChats is a React.js-based chatbot setup platform designed to provide a sea
 📦 BeyondChats
 ├── 📁 src
 │   ├── 📁 components
-│   │   ├── Shared (Reusable UI Components)
+│   │   ├── Layout (Reusable UI Components)
 │   │   ├── ChatIntegration (Chatbot Components)
 │   │   ├── Authentication (Auth-related Components)
 │   ├── 📁 pages
@@ -47,7 +47,7 @@ BeyondChats is a React.js-based chatbot setup platform designed to provide a sea
 │   │   ├── ContactUs.jsx (Contact Page)
 │   ├── App.js (Main Application File)
 │   ├── firebase.js (Firebase Configuration)
-│   ├── routes.js (Routing Configuration)
+│   ├── App.js (Routing Configuration)
 ├── 📄 package.json (Dependencies and Scripts)
 ├── 📄 README.md (Project Documentation)
 ```
