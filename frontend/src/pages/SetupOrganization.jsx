@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ScrapingStatus from '../components/Onboarding/ScrapingStatus';
+import { useNavigate } from "react-router-dom"; 
 
 export default function SetupOrganization() {
   const [formData, setFormData] = useState({
@@ -17,6 +18,8 @@ export default function SetupOrganization() {
       description: 'Automatically fetched meta description from website...'
     }));
   };
+
+  const navigate = useNavigate();
 
   return (
     <motion.div
@@ -61,7 +64,7 @@ export default function SetupOrganization() {
       <div className="mt-8 flex justify-end">
         <button
           className="primary-btn"
-          onClick={() => window.location = '/integration'}
+          onClick={() => navigate("/integration")}
         >
           Continue
         </button>
