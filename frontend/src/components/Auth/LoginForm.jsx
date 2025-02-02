@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  auth,
-  provider,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-} from "../../firebase";
+import { auth, provider, signInWithPopup, signInWithEmailAndPassword } from "../../firebase";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -18,7 +13,7 @@ const LoginForm = () => {
     try {
       const result = await signInWithPopup(auth, provider);
       console.log(result.user);
-      navigate("/setup"); 
+      navigate("/setup");
     } catch (error) {
       console.error(error);
       setError(error.message);
@@ -31,7 +26,7 @@ const LoginForm = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/setup"); 
+      navigate("/setup");
     } catch (error) {
       console.error(error);
       setError(error.message);
@@ -66,7 +61,6 @@ const LoginForm = () => {
 
           <button
             type="submit"
-            onClick={() => navigate("/")} 
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300"
           >
             Log In

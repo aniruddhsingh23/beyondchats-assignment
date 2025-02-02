@@ -32,8 +32,8 @@ const EmailVerification = () => {
             <CheckCircleIcon className="w-16 h-16 text-green-500 mx-auto" />
             <h2 className="text-xl font-semibold text-gray-900 mt-3">Email Verified!</h2>
             <p className="text-gray-600 mt-2">You can now access all features.</p>
-            <a href="/dashboard" className="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">
-              Go to Dashboard
+            <a href="/login" className="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+              Go Back to Log In
             </a>
           </>
         ) : (
