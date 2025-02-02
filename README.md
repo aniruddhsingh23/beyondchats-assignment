@@ -34,22 +34,8 @@ BeyondChats is a React.js-based chatbot setup platform designed to provide a sea
 ## 📂 Project Structure
 
 ```
-📦 BeyondChats
-├── 📁 src
-│   ├── 📁 components
-│   │   ├── Shared (Reusable UI Components)
-│   │   ├── ChatIntegration (Chatbot Components)
-│   │   ├── Authentication (Auth-related Components)
-│   ├── 📁 pages
-│   │   ├── Registration.jsx (User Authentication)
-│   │   ├── SetupOrganization.jsx (Organization Setup)
-│   │   ├── Success.jsx (Success Screen)
-│   │   ├── ContactUs.jsx (Contact Page)
-│   ├── App.js (Main Application File)
-│   ├── firebase.js (Firebase Configuration)
-│   ├── routes.js (Routing Configuration)
-├── 📄 package.json (Dependencies and Scripts)
-├── 📄 README.md (Project Documentation)
+📦 BeyondChats ├── 📁 frontend │ ├── 📁 src │ │ ├── 📁 components │ │ │ ├── Shared (Reusable UI Components) │ │ │ ├── ChatIntegration (Chatbot Components) │ │ │ ├── Authentication (Auth-related Components) │ │ ├── 📁 pages │ │ │ ├── Registration.jsx (User Authentication) │ │ │ ├── SetupOrganization.jsx (Organization Setup) │ │ │ ├── Success.jsx (Success Screen) │ │ │ ├── ContactUs.jsx (Contact Page) │ │ ├── App.js (Main Application File) │ │ ├── firebase.js (Firebase Configuration) │ │ ├── routes.js (Routing Configuration) ├── 📁 backend │ ├── 📁 Controllers │ │ ├── scrapingStatus.js │ ├── 📁 Models │ │ ├── ScrapedPage.js │ ├── 📁 Routes │ │ ├── scrapingRoutes.js │ ├── 📁 Utils │ │ ├── scraper.js │ ├── .env │ ├── package-lock.json │ ├── package.json │ ├── server.js ├── 📄 readme.md
+
 ```
 
 ## 🛠️ Installation & Setup
@@ -63,9 +49,39 @@ cd beyondchats
 
 ### 2️⃣ Install Dependencies
 
-```sh
-npm install
-```
+2. **Install dependencies for both frontend and backend:**
+
+- **Frontend:**
+
+  ```
+  cd frontend
+  npm install
+  ```
+
+- **Backend:**
+  ```
+  cd backend
+  npm install
+  ```
+
+3. **Set up Firebase:**
+
+- Go to Firebase console and create a new project.
+- Set up authentication for email/password and Google login.
+- Download the Firebase config and add it to `frontend/src/firebase.js`.
+
+4. **Set up environment variables:**
+
+- Create a `.env` file in the `backend` folder.
+- Add your MONGODB_URI and PORT.
+
+## Running the Project
+
+To run the project in development mode:
+
+1. **Start the backend server:**
+
+2. **Start the frontend app:**
 
 ### 3️⃣ Configure Firebase
 
