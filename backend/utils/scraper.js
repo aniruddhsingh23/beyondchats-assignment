@@ -9,7 +9,7 @@ const scrapeWebsite = async (websiteUrl) => {
     const metaDescription = $('meta[name="description"]').attr('content') || 'No description available';
     const pages = [];
     
-    // Add other page extraction logic here (e.g., finding all internal links)
+    // Add other page extraction logic here 
     $('a').each((index, element) => {
       const href = $(element).attr('href');
       if (href && href.startsWith(websiteUrl)) {

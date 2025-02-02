@@ -7,10 +7,10 @@ const scrapeWebsite = async (url) => {
   const { data } = await axios.get(url);
   const $ = cheerio.load(data);
 
-  // Scrape meta description (if available)
+  // Scrape meta description 
   const metaDescription = $('meta[name="description"]').attr('content');
 
-  // Scrape all pages (you can refine this logic as needed)
+  // Scrape all pages 
   const pages = [];
   $('a').each((i, element) => {
     const pageUrl = $(element).attr('href');
