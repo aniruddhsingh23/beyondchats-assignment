@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ScrapingStatus from "./ScrapingStatus";
+import axios from 'axios';
 
 const OrganizationSetup = () => {
   const [companyName, setCompanyName] = useState("");
@@ -10,16 +11,20 @@ const OrganizationSetup = () => {
 
   const scrapeWebsite = async (url) => {
     setScrapingStatus({ status: "Scraping in progress..." });
-    setTimeout(() => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/scraping/scrape', {
+        name: companyName,
+        url: websiteUrl,
+        description: description,
+      });
       setScrapingStatus({
         status: "Scraping complete!",
-        pages: [
-          { url: `${url}/home`, status: "Scraped" },
-          { url: `${url}/about`, status: "Pending" },
-          { url: `${url}/contact`, status: "Scraped" },
-        ],
+        pages: response.data.website.pages,
       });
-    }, 3000);
+    } catch (err) {
+      setScrapingStatus({ status: "Scraping failed!" });
+      console.error(err);
+    }
   };
 
   const trainChatbot = async () => {
