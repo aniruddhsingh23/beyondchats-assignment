@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .input-field {
+    @apply w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+  }
+  
+  .primary-btn {
+    @apply bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors;
+  }
+
+  .secondary-btn {
+    @apply bg-gray-100 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors;
+  }
+
+  .google-btn {
+    @apply flex items-center justify-center gap-2 w-full p-3 border rounded-lg hover:bg-gray-50 transition-colors text-gray-700;
+  }
+
+  .google-btn:disabled {
+    @apply bg-gray-100 text-gray-400 hover:bg-gray-100 cursor-not-allowed;
+  }
+
+  .success-screen {
+    @apply text-center space-y-8 p-6 max-w-2xl mx-auto;
+  }
+}
+
+/* Animations */
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating-confetti {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
