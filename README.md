@@ -2,6 +2,8 @@
 
 BeyondChats is a React.js-based chatbot setup platform designed to provide a seamless chatbot integration experience. The project features Firebase authentication with email verification, dynamic UI interactions powered by Framer Motion, dummy web scraping for organization setup, and an intuitive, mobile-responsive UI/UX.
 
+## 🚀 Deployed Link :- ("https://beyondchatsapp.netlify.app/")
+
 ## 🚀 Features
 
 ### 🔐 Firebase Authentication
